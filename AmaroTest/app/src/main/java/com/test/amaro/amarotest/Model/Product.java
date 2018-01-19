@@ -4,6 +4,15 @@ package com.test.amaro.amarotest.Model;
  * Created by jaiber on 1/19/18.
  */
 
+import android.util.Log;
+
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Product {
@@ -154,5 +163,22 @@ public class Product {
     public void setSizes(List<Size> sizes) {
         this.sizes = sizes;
     }
+
+
+    // Decodes array of business json results into business model objects
+    public static ArrayList<Product> fromJson(JSONArray jsonArray) {
+
+        ArrayList<Product> productList = new ArrayList<Product>(jsonArray.length());
+
+        Gson gson = new Gson();
+        Product[] data = gson.fromJson(jsonArray.toString(), Product[].class);
+        //Log.d(TAG, ""+data.length);
+
+        productList = new ArrayList<Product>(Arrays.asList(data));
+
+        return productList;
+    }
+
+
 
 }
