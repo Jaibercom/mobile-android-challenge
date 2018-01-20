@@ -4,12 +4,9 @@ package com.test.amaro.amarotest.Model;
  * Created by jaiber on 1/19/18.
  */
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,12 +16,12 @@ public class Product {
 
     private String name;
     private String style;
-    private String codeColor;
+    private String code_color;
     private String colorSlug;
     private String color;
     private Boolean onSale;
-    private String regularPrice;
-    private String actualPrice;
+    private String regular_price;
+    private String actual_price;
     private String discountPercentage;
     private String installments;
     private String image;
@@ -40,7 +37,7 @@ public class Product {
     /**
      *
      * @param sizes
-     * @param actualPrice
+     * @param actual_price
      * @param onSale
      * @param style
      * @param color
@@ -48,20 +45,20 @@ public class Product {
      * @param discountPercentage
      * @param name
      * @param image
-     * @param regularPrice
+     * @param regular_price
      * @param codeColor
      * @param installments
      */
-    public Product(String name, String style, String codeColor, String colorSlug, String color, Boolean onSale, String regularPrice, String actualPrice, String discountPercentage, String installments, String image, List<Size> sizes) {
+    public Product(String name, String style, String codeColor, String colorSlug, String color, Boolean onSale, String regular_price, String actual_price, String discountPercentage, String installments, String image, List<Size> sizes) {
         super();
         this.name = name;
         this.style = style;
-        this.codeColor = codeColor;
+        this.code_color = codeColor;
         this.colorSlug = colorSlug;
         this.color = color;
         this.onSale = onSale;
-        this.regularPrice = regularPrice;
-        this.actualPrice = actualPrice;
+        this.regular_price = regular_price;
+        this.actual_price = actual_price;
         this.discountPercentage = discountPercentage;
         this.installments = installments;
         this.image = image;
@@ -85,11 +82,11 @@ public class Product {
     }
 
     public String getCodeColor() {
-        return codeColor;
+        return code_color;
     }
 
     public void setCodeColor(String codeColor) {
-        this.codeColor = codeColor;
+        this.code_color = codeColor;
     }
 
     public String getColorSlug() {
@@ -117,19 +114,19 @@ public class Product {
     }
 
     public String getRegularPrice() {
-        return regularPrice;
+        return regular_price;
     }
 
     public void setRegularPrice(String regularPrice) {
-        this.regularPrice = regularPrice;
+        this.regular_price = regularPrice;
     }
 
     public String getActualPrice() {
-        return actualPrice;
+        return actual_price;
     }
 
     public void setActualPrice(String actualPrice) {
-        this.actualPrice = actualPrice;
+        this.actual_price = actualPrice;
     }
 
     public String getDiscountPercentage() {

@@ -1,19 +1,13 @@
 package com.test.amaro.amarotest;
 
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
-import com.google.gson.Gson;
 import com.test.amaro.amarotest.Model.Product;
 import com.test.amaro.amarotest.WebServices.ConfigURL;
 import com.test.amaro.amarotest.WebServices.VolleySingleton;
@@ -22,8 +16,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,10 +27,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        requestProducts();
+        //requestProducts();
+
+        // Add fragment to Activity
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.list_container, ProductsListFragment.getFrament())
+                .commit();
+
+
     }
 
-
+/*
     private void requestProducts() {
 
         Log.d(TAG, "request");
@@ -80,5 +80,5 @@ public class MainActivity extends AppCompatActivity {
         });
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjReq);
     }
-
+*/
 }
