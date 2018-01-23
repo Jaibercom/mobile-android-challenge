@@ -1,4 +1,4 @@
-package com.test.amaro.amarotest.VIews.ProductsList;
+package com.test.amaro.amarotest.Views.ProductsList;
 
 import android.content.Context;
 import android.util.Log;
@@ -26,8 +26,13 @@ public class ProductsListInteractor {
     private static final String TAG = "ProductsListInteractor" ;
     private List<Product> productList;
     private Context ctx;
-
     private OnDataRequestListener onDataRequestListener;
+
+    public interface OnDataRequestListener {
+
+        void onDataReady(List<Product> productList);
+
+    }
 
     public ProductsListInteractor(Context _ctx, OnDataRequestListener listener){
         ctx = _ctx;
@@ -75,13 +80,6 @@ public class ProductsListInteractor {
             }
         });
         VolleySingleton.getInstance(ctx).addToRequestQueue(jsonObjReq);
-    }
-
-
-    public interface OnDataRequestListener {
-
-        void onDataReady(List<Product> productList);
-
     }
 
 }

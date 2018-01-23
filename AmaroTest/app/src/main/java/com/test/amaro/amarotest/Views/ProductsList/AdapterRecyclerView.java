@@ -1,4 +1,4 @@
-package com.test.amaro.amarotest.Adapters;
+package com.test.amaro.amarotest.Views.ProductsList;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -28,6 +28,14 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
 
     private List<Product> products;
     private Context ctx;
+    private final String TAG = "AdapterRecyclerView";
+
+    public interface OnItemClickListener {
+        public void onItemClick(RecyclerView.ViewHolder viewHolder, int pos);
+    }
+
+    private OnItemClickListener onItemClickListener;
+
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public AdapterRecyclerView(List<Product> products) {
@@ -45,6 +53,13 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
 
     }
 
+    // Provide a suitable constructor (depends on the kind of dataset)
+    public AdapterRecyclerView(Context ctx, OnItemClickListener listener) {
+        this.products = new ArrayList<>();
+        this.ctx = ctx;
+        this.onItemClickListener = listener;
+
+    }
 
     // Create new views (invoked by the layout manager)
     @Override
@@ -65,14 +80,9 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
         holder.productName.setText(products.get(pos).getName());
         holder.productPrice.setText(products.get(pos).getActualPrice());
 
- /*       holder.studentName.setText(products.get(pos).getFirstname() + " "+ products.get(pos).getLastName());
-*/
-        //holder.studentPhoto.setImageResource(products.get(pos).getPhoto());
-        ////.load(ConfigURL.URL_CONTAINER_DOWN.concat(String.valueOf(products.get(pos).getId())).concat(products.get(pos).getPhoto()))
         Glide.with(ctx)
                 .load(products.get(pos).getImage())
                 .into(holder.imageMiniature);
-
 
     }
 
@@ -110,12 +120,6 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
             productName = (TextView) itemView.findViewById(R.id.tvName);
             productPrice = (TextView) itemView.findViewById(R.id.tvPrice);
             imageMiniature = (ImageView) itemView.findViewById(R.id.ivImage);
-            /*
-            cardView = (CardView) itemView.findViewById(R.id.card_view);
-            studentName = (TextView) itemView.findViewById(R.id.student_name);
-            studentGender = (TextView) itemView.findViewById(R.id.person_gender);
-            studentPhoto = (ImageView) itemView.findViewById(R.id.student_photo);
-            */
         }
 
         private void removeItem(int position) {
@@ -128,8 +132,11 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
         public void onClick(View view) {
             int pos = getAdapterPosition();
             //removeItem(pos);
-            Log.d("AdapterRecyclerView", "onClick: " + pos + "  Name: "+ productName.getText() );
-            Toast.makeText(itemView.getContext(), "Hello: "+ productName.getText(), Toast.LENGTH_SHORT).show();
+            //Log.d(TAG, "onItemClick: " + pos + "  Name: "+ productName.getText() );
+            //Toast.makeText(itemView.getContext(), "Hello: "+ productName.getText(), Toast.LENGTH_SHORT).show();
+            onItemClickListener.onItemClick(this, pos);
+
         }
     }
+
 }
