@@ -2,5 +2,15 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorTransparentDark">#FF000000</color>
+    <color name="colorTransparentGray">#FF555555</color>
+    <color name="colorTransparentLightGray">#FFCCCCCC</color>
+    <color name="colorTransparentWhite">#FFFFFFFF</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorLightDark">#333333</color>
+    <color name="colorAppRed">#AB2929</color>
+    <color name="colorLightDarkFocus">#AAAAAA</color>
+    <color name="colorGradientA">#3a858787</color>
+    <color name="colorGradientB">#aa5c6164</color>
+    <item name="colorLightgray" type="color">#C1BEC1</item>
 </resources>

@@ -4,15 +4,17 @@ package com.test.amaro.amarotest.Model;
  * Created by jaiber on 1/19/18.
  */
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.Log;
+
 import com.google.gson.Gson;
-
 import org.json.JSONArray;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Product {
+public class Product implements Parcelable{
 
     private String name;
     private String style;
@@ -64,6 +66,7 @@ public class Product {
         this.image = image;
         this.sizes = sizes;
     }
+
 
     public String getName() {
         return name;
@@ -177,5 +180,57 @@ public class Product {
     }
 
 
+    protected Product(Parcel in) {
+        name = in.readString();
+        style = in.readString();
+        code_color = in.readString();
+        colorSlug = in.readString();
+        color = in.readString();
+        byte tmpOnSale = in.readByte();
+        onSale = tmpOnSale == 0 ? null : tmpOnSale == 1;
+        regular_price = in.readString();
+        actual_price = in.readString();
+        discountPercentage = in.readString();
+        installments = in.readString();
+        image = in.readString();
+        //in.readList(sizes, null);
+    }
 
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
+
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeString(style);
+        parcel.writeString(code_color);
+        parcel.writeString(colorSlug);
+        parcel.writeString(color);
+        parcel.writeByte((byte) (onSale == null ? 0 : onSale ? 1 : 2));
+        parcel.writeString(regular_price);
+        parcel.writeString(actual_price);
+        parcel.writeString(discountPercentage);
+        parcel.writeString(installments);
+        parcel.writeString(image);
+        //parcel.writeList(sizes);
+
+        //Log.d("TAG", "patrcel: "+parcel.getClass().toString());
+
+    }
 }
