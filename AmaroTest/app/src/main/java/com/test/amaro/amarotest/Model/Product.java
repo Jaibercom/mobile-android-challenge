@@ -6,7 +6,7 @@ package com.test.amaro.amarotest.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
+import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import org.json.JSONArray;
@@ -14,17 +14,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Product implements Parcelable{
+public class Product implements Parcelable, Comparable<Product>{
 
     private String name;
     private String style;
     private String code_color;
-    private String colorSlug;
+    private String color_slug;
     private String color;
-    private Boolean onSale;
+    private Boolean on_sale;
     private String regular_price;
     private String actual_price;
-    private String discountPercentage;
+    private String discount_percentage;
     private String installments;
     private String image;
     private List<Size> sizes = null;
@@ -40,28 +40,28 @@ public class Product implements Parcelable{
      *
      * @param sizes
      * @param actual_price
-     * @param onSale
+     * @param on_sale
      * @param style
      * @param color
-     * @param colorSlug
-     * @param discountPercentage
+     * @param color_slug
+     * @param discount_percentage
      * @param name
      * @param image
      * @param regular_price
      * @param codeColor
      * @param installments
      */
-    public Product(String name, String style, String codeColor, String colorSlug, String color, Boolean onSale, String regular_price, String actual_price, String discountPercentage, String installments, String image, List<Size> sizes) {
+    public Product(String name, String style, String codeColor, String color_slug, String color, Boolean on_sale, String regular_price, String actual_price, String discount_percentage, String installments, String image, List<Size> sizes) {
         super();
         this.name = name;
         this.style = style;
         this.code_color = codeColor;
-        this.colorSlug = colorSlug;
+        this.color_slug = color_slug;
         this.color = color;
-        this.onSale = onSale;
+        this.on_sale = on_sale;
         this.regular_price = regular_price;
         this.actual_price = actual_price;
-        this.discountPercentage = discountPercentage;
+        this.discount_percentage = discount_percentage;
         this.installments = installments;
         this.image = image;
         this.sizes = sizes;
@@ -93,11 +93,11 @@ public class Product implements Parcelable{
     }
 
     public String getColorSlug() {
-        return colorSlug;
+        return color_slug;
     }
 
     public void setColorSlug(String colorSlug) {
-        this.colorSlug = colorSlug;
+        this.color_slug = colorSlug;
     }
 
     public String getColor() {
@@ -109,11 +109,11 @@ public class Product implements Parcelable{
     }
 
     public Boolean getOnSale() {
-        return onSale;
+        return on_sale;
     }
 
     public void setOnSale(Boolean onSale) {
-        this.onSale = onSale;
+        this.on_sale = onSale;
     }
 
     public String getRegularPrice() {
@@ -133,11 +133,11 @@ public class Product implements Parcelable{
     }
 
     public String getDiscountPercentage() {
-        return discountPercentage;
+        return discount_percentage;
     }
 
     public void setDiscountPercentage(String discountPercentage) {
-        this.discountPercentage = discountPercentage;
+        this.discount_percentage = discountPercentage;
     }
 
     public String getInstallments() {
@@ -184,13 +184,13 @@ public class Product implements Parcelable{
         name = in.readString();
         style = in.readString();
         code_color = in.readString();
-        colorSlug = in.readString();
+        color_slug = in.readString();
         color = in.readString();
         byte tmpOnSale = in.readByte();
-        onSale = tmpOnSale == 0 ? null : tmpOnSale == 1;
+        on_sale = tmpOnSale == 0 ? null : tmpOnSale == 1;
         regular_price = in.readString();
         actual_price = in.readString();
-        discountPercentage = in.readString();
+        discount_percentage = in.readString();
         installments = in.readString();
         image = in.readString();
         //in.readList(sizes, null);
@@ -220,17 +220,36 @@ public class Product implements Parcelable{
         parcel.writeString(name);
         parcel.writeString(style);
         parcel.writeString(code_color);
-        parcel.writeString(colorSlug);
+        parcel.writeString(color_slug);
         parcel.writeString(color);
-        parcel.writeByte((byte) (onSale == null ? 0 : onSale ? 1 : 2));
+        parcel.writeByte((byte) (on_sale == null ? 0 : on_sale ? 1 : 2));
         parcel.writeString(regular_price);
         parcel.writeString(actual_price);
-        parcel.writeString(discountPercentage);
+        parcel.writeString(discount_percentage);
         parcel.writeString(installments);
         parcel.writeString(image);
         //parcel.writeList(sizes);
 
         //Log.d("TAG", "patrcel: "+parcel.getClass().toString());
 
+    }
+
+    public float pricetoFloat(String strPrice){
+
+        float price;
+        strPrice = strPrice.replace(",", ".");
+        price = Float.parseFloat(strPrice.substring(3));
+        return price;
+    }
+
+
+    @Override
+    public int compareTo(@NonNull Product product) {
+
+        if(pricetoFloat(this.getActualPrice()) < pricetoFloat(product.getActualPrice()) ){
+            return -1;
+        }else{
+            return 1;
+        }
     }
 }

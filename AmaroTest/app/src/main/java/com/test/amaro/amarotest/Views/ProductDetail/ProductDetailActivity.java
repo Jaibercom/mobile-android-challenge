@@ -1,11 +1,13 @@
 package com.test.amaro.amarotest.Views.ProductDetail;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,10 +48,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         sizeViews[3] = findViewById(R.id.size_g);
         sizeViews[4] = findViewById(R.id.size_gg);
 
-        //sizeViews[0].setVisibility(View.GONE);
-        //sizeViews[4].setVisibility(View.GONE);
-
-
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -67,25 +65,29 @@ public class ProductDetailActivity extends AppCompatActivity {
             updateDisplay();
 
         }
-
     }
 
     void updateDisplay(){
 
         if(product != null){
 
+            // Updating text
             ((TextView) findViewById(R.id.tvName)).setText(product.getName());
             ((TextView) findViewById(R.id.tvActualPrice)).setText(product.getActualPrice());
 
             if(!product.getActualPrice().equals(product.getRegularPrice()) ) {
-                ((TextView) findViewById(R.id.tvRegularPrice)).setText(product.getRegularPrice());
+                TextView someTextView =  findViewById(R.id.tvRegularPrice);
+                someTextView.setText(Html.fromHtml(product.getRegularPrice()));
+                someTextView.setPaintFlags(someTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             }
-            //((TextView) findViewById(R.id.contenido)).setText(product.getCodeColor());
+
+            // Updating image
             Glide.with(this)
                     .load(product.getImage())
                     .into((ImageView) findViewById(R.id.ivImage));
 
 
+            // Updating sizes
             if(product.getSizes() != null) {
                 for (int i=0; i<product.getSizes().size(); i++) {
                     //Log.d(TAG, "Size: " + size.getSize() + " available: " + size.getAvailable());
@@ -97,7 +99,6 @@ public class ProductDetailActivity extends AppCompatActivity {
             }else{
                 Log.d(TAG, "Sizes is null ");
             }
-
         }
     }
 
