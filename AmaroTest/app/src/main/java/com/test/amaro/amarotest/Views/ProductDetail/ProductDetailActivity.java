@@ -55,6 +55,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             actionBar.setTitle("");
         }
 
+
         if(getIntent().hasExtra(PRODUCT)  && getIntent().hasExtra(SIZES)) {
             product = (Product) getIntent().getParcelableExtra(PRODUCT);
             Log.d(TAG, "Product: " + product.getName());
