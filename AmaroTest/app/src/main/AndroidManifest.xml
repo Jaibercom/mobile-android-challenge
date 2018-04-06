@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Views.ProductsList.ProductListActivity"
+            android:name=".activities.ProductListActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,14 +21,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Views.ProductDetail.ProductDetailActivity"
+            android:name=".activities.ProductDetailActivity"
             android:label=""
             android:screenOrientation="portrait"
-            android:parentActivityName=".Views.ProductsList.ProductListActivity"
+            android:parentActivityName=".activities.ProductListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.test.amaro.amarotest.Views.ProductsList.ProductListActivity" />
+                android:value="com.test.amaro.amarotest.activities.ProductListActivity" />
         </activity>
     </application>
 

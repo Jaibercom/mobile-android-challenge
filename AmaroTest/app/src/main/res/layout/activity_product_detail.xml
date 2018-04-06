@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.test.amaro.amarotest.Views.ProductDetail.ProductDetailActivity"
+    tools:context="com.test.amaro.amarotest.activities.ProductDetailActivity"
     tools:ignore="MergeRootFrame">
 
     <android.support.v7.widget.Toolbar
