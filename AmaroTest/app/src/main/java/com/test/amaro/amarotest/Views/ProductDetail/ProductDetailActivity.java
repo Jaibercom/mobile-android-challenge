@@ -1,4 +1,4 @@
-package com.test.amaro.amarotest.activities;
+package com.test.amaro.amarotest.Views.ProductDetail;
 
 import android.content.Intent;
 import android.graphics.Paint;
@@ -19,6 +19,7 @@ import com.jaouan.compoundlayout.CircleGradientRadioLayout;
 import com.test.amaro.amarotest.Model.Product;
 import com.test.amaro.amarotest.Model.Size;
 import com.test.amaro.amarotest.R;
+import com.test.amaro.amarotest.Views.ProductsList.ProductListActivity;
 
 import java.util.List;
 

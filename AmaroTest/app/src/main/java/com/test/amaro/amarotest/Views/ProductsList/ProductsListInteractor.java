@@ -45,7 +45,7 @@ public class ProductsListInteractor {
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                 Request.Method.GET,
-                ConfigURL.INSTANCE.getURL_PRODUCTS(),
+                ConfigURL.URL_PRODUCTS,
                 null,
                 new Response.Listener<JSONObject>() {
 
@@ -54,7 +54,7 @@ public class ProductsListInteractor {
                         //Log.d(TAG, response.toString());
                         try {
                             JSONArray productsJson = response.getJSONArray("products");
-                            productList = Product.Companion.fromJson(productsJson);
+                            productList = Product.fromJson(productsJson);
 
                             if(productList != null) {
                                 for(int i=0; i<productList.size(); i++){

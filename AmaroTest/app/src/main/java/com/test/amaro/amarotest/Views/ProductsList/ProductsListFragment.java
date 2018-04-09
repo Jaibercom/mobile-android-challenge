@@ -1,6 +1,7 @@
-package com.test.amaro.amarotest.fragments;
+package com.test.amaro.amarotest.Views.ProductsList;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,12 +17,11 @@ import android.view.ViewGroup;
 
 import com.test.amaro.amarotest.Model.Product;
 import com.test.amaro.amarotest.R;
-import com.test.amaro.amarotest.Views.ProductsList.AdapterRecyclerView;
-import com.test.amaro.amarotest.Views.ProductsList.ProductsListInteractor;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
