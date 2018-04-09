@@ -6,19 +6,11 @@ import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
-
-import com.test.amaro.amarotest.Model.Product
+import com.test.amaro.amarotest.model.Product
 import com.test.amaro.amarotest.R
-import com.test.amaro.amarotest.api.ApiService
 import com.test.amaro.amarotest.fragments.ProductsListFragment
-
-import java.util.ArrayList
-
-import javax.inject.Inject
-
-import dagger.android.AndroidInjection
+import timber.log.Timber
 
 class ProductListActivity : AppCompatActivity(), ProductsListFragment.OnListFragmentListener {
 
@@ -31,21 +23,17 @@ class ProductListActivity : AppCompatActivity(), ProductsListFragment.OnListFrag
     private var mTwoPane: Boolean = false
     private var fragment: ProductsListFragment? = null
 
-    @Inject
-    lateinit var api: ApiService
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_list)
 
-        AndroidInjection.inject(this)
+        Timber.i("ProductListActivity")
 
-
-        fragment = ProductsListFragment.getFrament()
+        fragment = ProductsListFragment.frament
 
         // Add fragment to Activity
-        supportFragmentManager
+        fragmentManager
                 .beginTransaction()
                 .replace(R.id.list_container, fragment)
                 .commit()

@@ -1,4 +1,4 @@
-package com.test.amaro.amarotest.Model
+package com.test.amaro.amarotest.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

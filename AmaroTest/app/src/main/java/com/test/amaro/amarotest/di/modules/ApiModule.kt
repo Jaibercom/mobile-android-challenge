@@ -1,6 +1,5 @@
 package com.test.amaro.amarotest.di.modules
 
-import android.app.Application
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.test.amaro.amarotest.HOST_IP
@@ -9,10 +8,9 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
 @Module
-class ApiModule(private val app: Application) {
+class ApiModule {
 
     @Provides
     fun providesApi(retrofit: Retrofit): ApiService{
@@ -37,5 +35,4 @@ class ApiModule(private val app: Application) {
     fun providesGson(): Gson{
         return GsonBuilder().disableHtmlEscaping().create()
     }
-
 }

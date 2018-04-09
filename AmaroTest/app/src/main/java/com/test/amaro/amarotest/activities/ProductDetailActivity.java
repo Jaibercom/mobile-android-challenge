@@ -16,11 +16,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jaouan.compoundlayout.CircleGradientRadioLayout;
-import com.test.amaro.amarotest.Model.Product;
-import com.test.amaro.amarotest.Model.Size;
+import com.test.amaro.amarotest.model.Product;
+import com.test.amaro.amarotest.model.Size;
 import com.test.amaro.amarotest.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -59,7 +59,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             product = (Product) getIntent().getParcelableExtra(PRODUCT);
             Log.d(TAG, "Product: " + product.getName());
             //Log.d(TAG, "Product sizes: " + product.getSizes().size());
-            List<Size> sizes = (List) getIntent().getParcelableArrayListExtra(SIZES);
+            ArrayList<Size> sizes =  getIntent().getParcelableArrayListExtra(SIZES);
             product.setSizes(sizes);
 
             updateDisplay();
